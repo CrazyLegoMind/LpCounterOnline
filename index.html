@@ -1,6 +1,167 @@
 <!DOCTYPE html>
 <head>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+
+    <style>
+     ul {
+	 list-style-type: none;
+	 margin: 0;
+	 padding: 0;
+	 overflow: hidden;
+	 background-color: #666666;
+     }
+
+     li {
+	 float: left;
+     }
+
+     li a {
+	 display: block;
+	 color: white;
+	 text-align: center;
+	 padding: 16px;
+	 text-decoration: none;
+     }
+     
+     ul button {
+	 display: block;
+	 text-decoration: none;
+     }
+
+     button {
+	 display: block;
+     }
+    </style>
 </head>
-<body>
-    <a href="LpCounterOnline.html">Click here to go to the Lp Counter <a> 
-</body>
+<html>
+    
+    <body>
+	<ul>
+	    <li><p>PLAYER 1</p><a id="left_lp">8000</a></li>
+	    <li> <a>
+		<ul>
+		    <ul><li id="current_value">0</li></ul>
+		    <ul>
+			<li><button class="btn_num">5000</button></li>
+			<li><button class="btn_num">3000</button></li>
+			<li><button class="btn_num">2000</button></li>
+			<li><button class="btn_num">1000</button></li>
+		    </ul>
+
+		    <ul>
+			<li><button class="btn_num">500</button></li>
+			<li><button class="btn_num">300</button></li>
+			<li><button class="btn_num">200</button></li>
+			<li><button class="btn_num">100</button></li>
+		    </ul>
+		    
+		    <ul>
+			<li><button class="btn_num">50</button></li>
+			<li><button class="btn_num">25</button></li>
+			<li><button class="btn_str">half</button></li>
+			<li><button class="btn_str">double</button></li>
+		    </ul>
+		    <ul>
+			<li><button class="btn_str" name="toLeft"> <- </button></li>
+			<li><button class="btn_str">sub</button></li>
+			<li><button class="btn_str">add</button></li>
+			<li><button class="btn_str" name="toRight"> -> </button></li>
+		    </ul>
+		</ul>
+	    </a></li>
+	    <li><p>PLAYER 2</p><a id="right_lp">8000</a></li>
+	</ul>
+	<p id ="debug">msg debug space </p>
+	
+	<script>
+	 var player_number = 0;
+	 var op_number = 0;
+	 
+	 function performAction(pn,on){
+	     document.getElementById("debug").innerHTML = "acting "+pn+" "+on;
+	     // left = 1, right = 2
+	     //  add = 1, sub = 2
+	     
+	     if(on == 0 || pn == 0){
+		 document.getElementById("debug").innerHTML = "wrong initialization" ;
+	     }else if(pn == 1){//left
+		 lp = parseInt(document.getElementById("left_lp").innerHTML);
+		 val = parseInt(document.getElementById("current_value").innerHTML);
+		 if(on == 1){ //add
+		     document.getElementById("left_lp").innerHTML = lp + val;
+		 }else{//sub
+		     document.getElementById("left_lp").innerHTML = lp - val;
+		 }
+		 document.getElementById("current_value").innerHTML = 0;
+		 
+	     }else if(pn == 2){//right
+		 lp = parseInt(document.getElementById("right_lp").innerHTML);
+		 val = parseInt(document.getElementById("current_value").innerHTML);
+		 if(on == 1){ //add
+		     document.getElementById("right_lp").innerHTML = lp + val;
+		 }else{//sub
+		     document.getElementById("right_lp").innerHTML = lp - val;
+		 }
+		 document.getElementById("current_value").innerHTML = 0;
+	     }else{
+		 document.getElementById("debug").innerHTML = "nothing done" ;
+
+	     }
+	 }
+
+	 $(document).ready(function(){
+
+
+	     $(".btn_num").click(function(){
+		 document.getElementById("debug").innerHTML = "clicked btn_num" ;
+		 current_val = parseInt(document.getElementById("current_value").innerHTML);
+		 op_val = parseInt(this.innerHTML);
+		 document.getElementById("current_value").innerHTML = op_val + current_val;
+
+	     });
+
+	     $(".btn_str").click(function(){
+		 document.getElementById("debug").innerHTML = "clicked btn_str" ;
+		 button_val = this.innerHTML;
+		 if(button_val == "add"){
+		     document.getElementById("debug").innerHTML = "clicked " + button_val ;
+		     op_number = 1;
+		     
+		 }else if(button_val == "sub"){
+		     document.getElementById("debug").innerHTML = "clicked " + button_val ;
+		     op_number = 2; 
+		     
+		 }else if(button_val == "half"){
+		     document.getElementById("debug").innerHTML = "clicked " + button_val ;
+		     current_val = parseInt(document.getElementById("current_value").innerHTML);
+		     document.getElementById("current_value").innerHTML = current_val/2;
+		     
+		 }else if(button_val == "double"){
+		     document.getElementById("debug").innerHTML = "clicked " + button_val ;
+		     current_val = parseInt(document.getElementById("current_value").innerHTML);
+		     document.getElementById("current_value").innerHTML = current_val*2;
+		     
+		 }else if(this.name == "toLeft"){
+		     document.getElementById("debug").innerHTML = "clicked <-" ;
+		     player_number = 1;
+		     performAction(player_number,op_number);
+		     
+		     
+		 }else if(this.name == "toRight"){
+		     document.getElementById("debug").innerHTML = "clicked ->" ;
+		     player_number = 2;
+		     performAction(player_number,op_number);
+		     
+
+		 }
+	     });
+	     
+
+	 });
+	</script>
+
+    </body>
+
+</html>
