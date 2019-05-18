@@ -12,11 +12,9 @@
 	 overflow: hidden;
 	 background-color: #666666;
      }
-
      li {
 	 float: left;
      }
-
      li a {
 	 display: block;
 	 color: white;
@@ -25,52 +23,64 @@
 	 text-decoration: none;
      }
      
-     ul button {
-	 display: block;
-	 text-decoration: none;
+     .btn-group button {
+	 background-color: #666666; /* Green background */
+	 border: 1px solid black; /* Green border */
+	 color: white; /* White text */
+	 padding: 10px 24px; /* Some padding */
+	 cursor: pointer; /* Pointer/hand icon */
+	 float: left; /* Float the buttons side by side */
      }
 
-     button {
-	 display: block;
+     /* Clear floats (clearfix hack) */
+     .btn-group:after {
+	 content: "";
+	 clear: both;
+	 display: table;
+     }
+     /* Add a background color on hover */
+     .btn-group button:hover {
+	 background-color: #888888;
      }
     </style>
 </head>
 <html>
-    
     <body>
 	<ul>
 	    <li><p>PLAYER 1</p><a id="left_lp">8000</a></li>
-	    <li> <a>
-		<ul>
-		    <ul><li id="current_value">0</li></ul>
-		    <ul>
-			<li><button class="btn_num">5000</button></li>
-			<li><button class="btn_num">3000</button></li>
-			<li><button class="btn_num">2000</button></li>
-			<li><button class="btn_num">1000</button></li>
-		    </ul>
+	    <li>
+		<a>
+			<ul><li id="current_value">0</li></ul>
+			<div class="btn-group" style="width:100%">
+			    <button class="btn_num" style="width:25%">5000</button>
+			    <button class="btn_num" style="width:25%">3000</button>
+			    <button class="btn_num" style="width:25%">2000</button>
+			    <button class="btn_num" style="width:25%">1000</button>
+			</div>
 
-		    <ul>
-			<li><button class="btn_num">500</button></li>
-			<li><button class="btn_num">300</button></li>
-			<li><button class="btn_num">200</button></li>
-			<li><button class="btn_num">100</button></li>
-		    </ul>
-		    
-		    <ul>
-			<li><button class="btn_num">50</button></li>
-			<li><button class="btn_num">25</button></li>
-			<li><button class="btn_str">half</button></li>
-			<li><button class="btn_str">double</button></li>
-		    </ul>
-		    <ul>
-			<li><button class="btn_str" name="toLeft"> <- </button></li>
-			<li><button class="btn_str">sub</button></li>
-			<li><button class="btn_str">add</button></li>
-			<li><button class="btn_str" name="toRight"> -> </button></li>
-		    </ul>
-		</ul>
-	    </a></li>
+			<div class="btn-group" style="width:100%">
+			    <button class="btn_num" style="width:25%">500</button>
+			    <button class="btn_num" style="width:25%">300</button>
+			    <button class="btn_num" style="width:25%">200</button>
+			    <button class="btn_num" style="width:25%">100</button>
+			</div>
+			
+			<div class="btn-group" style="width:100%">
+			    <button class="btn_num" style="width:25%">50</button>
+			    <button class="btn_num" style="width:25%">25</button>
+			    <button class="btn_str" style="width:25%">half</button>
+			    <button class="btn_str" style="width:25%">double</button>
+			</div>
+			
+			<div class="btn-group" style="width:100%">
+			    <button class="btn_str" name="toLeft"  style="width:20%"> <- </button>
+			    <button class="btn_str" style="width:20%">sub</button>
+			    <button class="btn_str" style="width:20%">reset</button>
+			    <button class="btn_str" style="width:20%">add</button>
+			    <button class="btn_str" name="toRight" style="width:20%"> -> </button>
+			</div>
+		</a>
+	    </li>
 	    <li><p>PLAYER 2</p><a id="right_lp">8000</a></li>
 	</ul>
 	<p id ="debug">msg debug space </p>
@@ -155,7 +165,13 @@
 		     performAction(player_number,op_number);
 		     
 
+		 }else if(button_val == "reset"){
+		     document.getElementById("debug").innerHTML = "clicked " + button_val ;
+		     document.getElementById("current_value").innerHTML = 0;
 		 }
+		 
+		 
+		 
 	     });
 	     
 
