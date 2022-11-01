@@ -1,195 +1,240 @@
 <!DOCTYPE html>
+
 <head>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
-    </script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-    <style>
-     html,
-     body {
-	 height: 100%;
-     }  
-     ul {
-	 list-style-type: none;
-	 margin: 0;
-	 padding: 0;
-	 overflow: hidden;
-	 background-color: #666666;
-     }
-     li {
-	 float: left;
-     }
-     li a {
-	 display: block;
-	 color: white;
-	 text-align: center;
-	 padding: 16px;
-	 text-decoration: none;
-     }
-     
-     .btn-group button {
-	 background-color: #666666; /* Green background */
-	 border: 1px solid black; /* Green border */
-	 color: white; /* White text */
-	 padding: 10px 24px; /* Some padding */
-	 cursor: pointer; /* Pointer/hand icon */
-	 float: left; /* Float the buttons side by side */
-     }
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+	</script>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+	<style>
+		html,
+		body {
+			height: 100%;
+		}
 
-     /* Clear floats (clearfix hack) */
-     .btn-group:after {
-	 content: "";
-	 clear: both;
-	 display: table;
-     }
-     /* Add a background color on hover */
-     .btn-group button:hover {
-	 background-color: #888888;
-     }
-    </style>
+		ul {
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+			overflow: hidden;
+			background-color: #666666;
+		}
+
+		li {
+			float: left;
+		}
+
+		li a {
+			display: block;
+			color: white;
+			text-align: center;
+			padding: 16px;
+			text-decoration: none;
+		}
+
+		.btn-group button {
+			background-color: #666666;
+			/* Green background */
+			border: 1px solid black;
+			/* Green border */
+			color: white;
+			/* White text */
+			padding: 10px 24px;
+			/* Some padding */
+			cursor: pointer;
+			/* Pointer/hand icon */
+			float: left;
+			/* Float the buttons side by side */
+		}
+
+		/* Clear floats (clearfix hack) */
+		.btn-group:after {
+			content: "";
+			clear: both;
+			display: table;
+		}
+
+		/* Add a background color on hover */
+		.btn-group button:hover {
+			background-color: #888888;
+		}
+
+		.styled {
+			border: 0;
+			line-height: 2.5;
+			padding: 0 20px;
+			font-size: 1rem;
+			text-align: center;
+			color: #fff;
+			text-shadow: 1px 1px 1px #000;
+			background-color: rgba(150, 150, 150, 1);
+			background-image: linear-gradient(to top left,
+					rgba(0, 0, 0, .2),
+					rgba(0, 0, 0, .2) 30%,
+					rgba(0, 0, 0, 0));
+			box-shadow: inset 2px 2px 3px rgba(255, 255, 255, .6),
+				inset -2px -2px 3px rgba(0, 0, 0, .6);
+		}
+
+		.styled:hover {
+			background-color: rgba(10, 10, 10, 1);
+		}
+
+		.styled:active {
+			box-shadow: inset -2px -2px 3px rgba(255, 255, 255, .6),
+				inset 2px 2px 3px rgba(0, 0, 0, .6);
+		}
+	</style>
 </head>
 <html>
-    <body>
+
+<body>
 	<ul>
-	    <li style="font-size: 10vw"><p>PLAYER 1</p><a style="font-size: 10vw" id="left_lp">8000</a></li>
-	    <li style="width:60%">
-		<a>
-		    <ul><li id="current_value">0</li></ul>
-		    <div class="btn-group" style="width:100%">
-			<button class="btn_num" style="width:25%">5000</button>
-			<button class="btn_num" style="width:25%">3000</button>
-			<button class="btn_num" style="width:25%">2000</button>
-			<button class="btn_num" style="width:25%">1000</button>
-		    </div>
+		<li style="font-size: 1vw">
+			<p>PLAYER 1</p><a style="font-size: 10vw" id="left_lp">8000</a>
+		</li>
+		<li style="width:60%">
+			<a>
+				<ul>
+					<li id="current_value">0</li>
+				</ul>
+				<div class="btn-group" style="width:100%">
+					<button class="btn_num styled" style="width:25%">5000</button>
+					<button class="btn_num styled" style="width:25%">3000</button>
+					<button class="btn_num styled" style="width:25%">2000</button>
+					<button class="btn_num styled" style="width:25%">1000</button>
+				</div>
 
-		    <div class="btn-group" style="width:100%">
-			<button class="btn_num" style="width:25%">500</button>
-			<button class="btn_num" style="width:25%">300</button>
-			<button class="btn_num" style="width:25%">200</button>
-			<button class="btn_num" style="width:25%">100</button>
-		    </div>
-		    
-		    <div class="btn-group" style="width:100%">
-			<button class="btn_num" style="width:25%">50</button>
-			<button class="btn_num" style="width:25%">25</button>
-			<button class="btn_str" style="width:25%">half</button>
-			<button class="btn_str" style="width:25%">double</button>
-		    </div>
-		    
-		    <div class="btn-group" style="width:100%">
-			<button class="btn_str" name="toLeft"  style="width:20%"> <- </button>
-			<button class="btn_str" style="width:20%">sub</button>
-			<button class="btn_str" style="width:20%">reset</button>
-			<button class="btn_str" style="width:20%">add</button>
-			<button class="btn_str" name="toRight" style="width:20%"> -> </button>
-		    </div>
-		</a>
-	    </li>
-	    <li style="font-size: 10vw"><p>PLAYER 2</p><a style="font-size: 10vw" id="right_lp">8000</a></li>
+				<div class="btn-group" style="width:100%">
+					<button class="btn_num styled" style="width:25%">500</button>
+					<button class="btn_num styled" style="width:25%">300</button>
+					<button class="btn_num styled" style="width:25%">200</button>
+					<button class="btn_num styled" style="width:25%">100</button>
+				</div>
+
+				<div class="btn-group" style="width:100%">
+					<button class="btn_num styled" style="width:25%">50</button>
+					<button class="btn_num styled" style="width:25%">25</button>
+					<button class="btn_str" style="width:25%">half</button>
+					<button class="btn_str" style="width:25%">double</button>
+				</div>
+
+				<div class="btn-group" style="width:100%">
+					<button class="btn_str" name="toLeft" style="width:20%">
+						<- </button>
+							<button class="btn_str" style="width:20%">sub</button>
+							<button class="btn_str" style="width:20%">reset</button>
+							<button class="btn_str" style="width:20%">add</button>
+							<button class="btn_str" name="toRight" style="width:20%"> -> </button>
+				</div>
+			</a>
+		</li>
+		<li style="font-size: 1vw">
+			<p>PLAYER 2</p><a style="font-size: 10vw" id="right_lp">8000</a>
+		</li>
 	</ul>
-	<p id ="debug">msg debug space </p>
-	
+	<p id="debug">msg debug space </p>
+
 	<script>
-	 var player_number = 0;
-	 var op_number = 0;
-	 
-	 function performAction(pn,on){
-	     document.getElementById("debug").innerHTML = "acting "+pn+" "+on;
-	     // left = 1, right = 2
-	     //  add = 1, sub = 2
-	     
-	     if(on == 0 || pn == 0){
-		 document.getElementById("debug").innerHTML = "wrong initialization" ;
-	     }else if(pn == 1){//left
-		 lp = parseInt(document.getElementById("left_lp").innerHTML);
-		 val = parseInt(document.getElementById("current_value").innerHTML);
-		 if(on == 1){ //add
-		     document.getElementById("left_lp").innerHTML = lp + val;
-		 }else{//sub
-		     document.getElementById("left_lp").innerHTML = lp - val;
-		 }
-		 document.getElementById("current_value").innerHTML = 0;
-		 
-	     }else if(pn == 2){//right
-		 lp = parseInt(document.getElementById("right_lp").innerHTML);
-		 val = parseInt(document.getElementById("current_value").innerHTML);
-		 if(on == 1){ //add
-		     document.getElementById("right_lp").innerHTML = lp + val;
-		 }else{//sub
-		     document.getElementById("right_lp").innerHTML = lp - val;
-		 }
-		 document.getElementById("current_value").innerHTML = 0;
-	     }else{
-		 document.getElementById("debug").innerHTML = "nothing done" ;
+		var player_number = 0;
+		var op_number = 0;
 
-	     }
-	 }
+		function performAction(pn, on) {
+			document.getElementById("debug").innerHTML = "acting " + pn + " " + on;
+			// left = 1, right = 2
+			//  add = 1, sub = 2
 
-	 
+			if (on == 0 || pn == 0) {
+				document.getElementById("debug").innerHTML = "wrong initialization";
+			} else if (pn == 1) {//left
+				lp = parseInt(document.getElementById("left_lp").innerHTML);
+				val = parseInt(document.getElementById("current_value").innerHTML);
+				if (on == 1) { //add
+					document.getElementById("left_lp").innerHTML = lp + val;
+				} else {//sub
+					document.getElementById("left_lp").innerHTML = lp - val;
+				}
+				document.getElementById("current_value").innerHTML = 0;
 
-	 $(document).ready(function(){
+			} else if (pn == 2) {//right
+				lp = parseInt(document.getElementById("right_lp").innerHTML);
+				val = parseInt(document.getElementById("current_value").innerHTML);
+				if (on == 1) { //add
+					document.getElementById("right_lp").innerHTML = lp + val;
+				} else {//sub
+					document.getElementById("right_lp").innerHTML = lp - val;
+				}
+				document.getElementById("current_value").innerHTML = 0;
+			} else {
+				document.getElementById("debug").innerHTML = "nothing done";
+
+			}
+		}
 
 
-	     $(".btn_num").click(function(){
-		 document.getElementById("debug").innerHTML = "clicked btn_num" ;
-		 current_val = parseInt(document.getElementById("current_value").innerHTML);
-		 op_val = parseInt(this.innerHTML);
-		 document.getElementById("current_value").innerHTML = op_val + current_val;
 
-	     });
+		$(document).ready(function () {
 
-	     $(".btn_str").click(function(){
-		 document.getElementById("debug").innerHTML = "clicked btn_str" ;
-		 button_val = this.innerHTML;
-		 if(button_val == "add"){
-		     document.getElementById("debug").innerHTML = "clicked " + button_val ;
-		     op_number = 1;
-		     
-		 }else if(button_val == "sub"){
-		     document.getElementById("debug").innerHTML = "clicked " + button_val ;
-		     op_number = 2; 
-		     
-		 }else if(button_val == "half"){
-		     document.getElementById("debug").innerHTML = "clicked " + button_val ;
-		     current_val = parseInt(document.getElementById("current_value").innerHTML);
-		     document.getElementById("current_value").innerHTML = current_val/2;
-		     
-		 }else if(button_val == "double"){
-		     document.getElementById("debug").innerHTML = "clicked " + button_val ;
-		     current_val = parseInt(document.getElementById("current_value").innerHTML);
-		     document.getElementById("current_value").innerHTML = current_val*2;
-		     
-		 }else if(this.name == "toLeft"){
-		     document.getElementById("debug").innerHTML = "clicked <-" ;
-		     player_number = 1;
-		     performAction(player_number,op_number);
-		     
-		     
-		 }else if(this.name == "toRight"){
-		     document.getElementById("debug").innerHTML = "clicked ->" ;
-		     player_number = 2;
-		     performAction(player_number,op_number);
-		     
 
-		 }else if(button_val == "reset"){
-		     document.getElementById("debug").innerHTML = "clicked " + button_val ;
-		     document.getElementById("current_value").innerHTML = 0;
-		 }
-		 
-		 window.addEventListener("load",function() {
-		     // Set a timeout...
-			 setTimeout(function(){
-			     // Hide the address bar!
-			     window.scrollTo(0, 1);
-			 }, 0);
-		 });
-		 
-	     });
-	     
+			$(".btn_num").click(function () {
+				document.getElementById("debug").innerHTML = "clicked btn_num";
+				current_val = parseInt(document.getElementById("current_value").innerHTML);
+				op_val = parseInt(this.innerHTML);
+				document.getElementById("current_value").innerHTML = op_val + current_val;
 
-	 });
+			});
+
+			$(".btn_str").click(function () {
+				document.getElementById("debug").innerHTML = "clicked btn_str";
+				button_val = this.innerHTML;
+				if (button_val == "add") {
+					document.getElementById("debug").innerHTML = "clicked " + button_val;
+					op_number = 1;
+
+				} else if (button_val == "sub") {
+					document.getElementById("debug").innerHTML = "clicked " + button_val;
+					op_number = 2;
+
+				} else if (button_val == "half") {
+					document.getElementById("debug").innerHTML = "clicked " + button_val;
+					current_val = parseInt(document.getElementById("current_value").innerHTML);
+					document.getElementById("current_value").innerHTML = current_val / 2;
+
+				} else if (button_val == "double") {
+					document.getElementById("debug").innerHTML = "clicked " + button_val;
+					current_val = parseInt(document.getElementById("current_value").innerHTML);
+					document.getElementById("current_value").innerHTML = current_val * 2;
+
+				} else if (this.name == "toLeft") {
+					document.getElementById("debug").innerHTML = "clicked <-";
+					player_number = 1;
+					performAction(player_number, op_number);
+
+
+				} else if (this.name == "toRight") {
+					document.getElementById("debug").innerHTML = "clicked ->";
+					player_number = 2;
+					performAction(player_number, op_number);
+
+
+				} else if (button_val == "reset") {
+					document.getElementById("debug").innerHTML = "clicked " + button_val;
+					document.getElementById("current_value").innerHTML = 0;
+				}
+
+				window.addEventListener("load", function () {
+					// Set a timeout...
+					setTimeout(function () {
+						// Hide the address bar!
+						window.scrollTo(0, 1);
+					}, 0);
+				});
+
+			});
+
+
+		});
 	</script>
 
-    </body>
+</body>
 
 </html>
