@@ -5,64 +5,64 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
 	</script>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+	<link href='https://fonts.googleapis.com/css?family=Silkscreen' rel='stylesheet'>
 	<style>
-		html,
 		body {
-			height: 100%;
+			font-family: 'Silkscreen';
 		}
 
-		ul {
-			list-style-type: none;
-			margin: 0;
-			padding: 0;
-			overflow: hidden;
-			background-color: #666666;
-		}
-
-		li {
-			float: left;
-		}
-
-		li a {
-			display: block;
-			color: white;
+		p {
 			text-align: center;
-			padding: 16px;
-			text-decoration: none;
+			margin: 5px 0;
 		}
 
-		.btn-group button {
-			background-color: #666666;
-			/* Green background */
-			border: 1px solid black;
-			/* Green border */
-			color: white;
-			/* White text */
-			padding: 10px 24px;
-			/* Some padding */
-			cursor: pointer;
-			/* Pointer/hand icon */
+		.lp {
+			color: #fff;
+			font-style: italic;
+			font-size: 3vw;
+			text-shadow:
+				-1px -1px 0 #000,
+				1px -1px 0 #000,
+				-1px 1px 0 #000,
+				1px 1px 0 #000;
+		}
+
+		.left {
+			background-color: #ff7676;
 			float: left;
-			/* Float the buttons side by side */
+			width: 15%;
+
+			/* The width is 20%, by default */
 		}
 
-		/* Clear floats (clearfix hack) */
-		.btn-group:after {
-			content: "";
-			clear: both;
-			display: table;
+		.main {
+			background-color: #f1f1f1;
+			float: left;
+			width: 70%;
+			/* The width is 60%, by default */
 		}
 
-		/* Add a background color on hover */
-		.btn-group button:hover {
-			background-color: #888888;
+		.right {
+			background-color: #5191f0;
+			float: right;
+			width: 15%;
+			height: 100%;
+			/* The width is 20%, by default */
+		}
+
+		.left,
+		.right {
+			display: flex;
+			flex-direction: column;
+			min-height: 100vh;
 		}
 
 		.styled {
+			font-family: 'Silkscreen';
 			border: 0;
 			line-height: 2.5;
-			padding: 0 20px;
-			font-size: 1rem;
+			padding: 0 5px;
+			font-size: 2vw;
 			text-align: center;
 			color: #fff;
 			text-shadow: 1px 1px 1px #000;
@@ -88,52 +88,53 @@
 <html>
 
 <body>
-	<ul>
-		<li style="font-size: 1vw">
-			<p>PLAYER 1</p><a style="font-size: 10vw" id="left_lp">8000</a>
-		</li>
-		<li style="width:60%">
-			<a>
-				<ul>
-					<li id="current_value">0</li>
-				</ul>
-				<div class="btn-group" style="width:100%">
-					<button class="btn_num styled" style="width:25%">5000</button>
-					<button class="btn_num styled" style="width:25%">3000</button>
-					<button class="btn_num styled" style="width:25%">2000</button>
-					<button class="btn_num styled" style="width:25%">1000</button>
-				</div>
+	<div class="left">
+		<p style="font-size: 3vw">PLAYER 1</p>
+		<p class="lp" id="left_lp">8000</p>
+	</div>
+	<div class="main">
+		
+		<table>
+			<tr>
+				<p class="lp" id="current_value" style="width:100%">0</p>
+			</tr>
+			<tr class="btn-group" style="width:100%">
+				<button class="btn_num styled" style="width:25%">5000</button>
+				<button class="btn_num styled" style="width:25%">3000</button>
+				<button class="btn_num styled" style="width:25%">2000</button>
+				<button class="btn_num styled" style="width:25%">1000</button>
+			</tr>
 
-				<div class="btn-group" style="width:100%">
-					<button class="btn_num styled" style="width:25%">500</button>
-					<button class="btn_num styled" style="width:25%">300</button>
-					<button class="btn_num styled" style="width:25%">200</button>
-					<button class="btn_num styled" style="width:25%">100</button>
-				</div>
+			<tr class="btn-group" style="width:100%">
+				<button class="btn_num styled" style="width:25%">500</button>
+				<button class="btn_num styled" style="width:25%">300</button>
+				<button class="btn_num styled" style="width:25%">200</button>
+				<button class="btn_num styled" style="width:25%">100</button>
+			</tr>
 
-				<div class="btn-group" style="width:100%">
-					<button class="btn_num styled" style="width:25%">50</button>
-					<button class="btn_num styled" style="width:25%">25</button>
-					<button class="btn_str" style="width:25%">half</button>
-					<button class="btn_str" style="width:25%">double</button>
-				</div>
+			<tr class="btn-group" style="width:100%">
+				<button class="btn_num styled" style="width:25%">50</button>
+				<button class="btn_num styled" style="width:25%">25</button>
+				<button class="btn_str styled" style="width:25%">half</button>
+				<button class="btn_str styled" style="width:25%">double</button>
+			</tr>
 
-				<div class="btn-group" style="width:100%">
-					<button class="btn_str" name="toLeft" style="width:20%">
-						<- </button>
-							<button class="btn_str" style="width:20%">sub</button>
-							<button class="btn_str" style="width:20%">reset</button>
-							<button class="btn_str" style="width:20%">add</button>
-							<button class="btn_str" name="toRight" style="width:20%"> -> </button>
-				</div>
-			</a>
-		</li>
-		<li style="font-size: 1vw">
-			<p>PLAYER 2</p><a style="font-size: 10vw" id="right_lp">8000</a>
-		</li>
-	</ul>
-	<p id="debug">msg debug space </p>
-
+			<tr class="btn-group" style="width:100%">
+				<button class="btn_str styled" name="toLeft" style="width:20%"> ← </button>
+				<button class="btn_str styled" style="width:20%">sub</button>
+				<button class="btn_str styled" style="width:20%">reset</button>
+				<button class="btn_str styled" style="width:20%">add</button>
+				<button class="btn_str styled" name="toRight" style="width:20%"> → </button>
+			</tr>
+			<tr>
+				<p id="debug">msg debug space </p>
+			</tr>
+		</table>
+	</div>
+	<div class="right">
+		<p style="font-size: 3vw">PLAYER 2</p>
+		<p class="lp" id="right_lp">8000</p>
+	</div>
 	<script>
 		var player_number = 0;
 		var op_number = 0;
